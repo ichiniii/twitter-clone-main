@@ -40,3 +40,9 @@
   overflow-y: auto;
   padding: 10px;
 }
+
+/* スクロールバー全体を透明にする */
+::-webkit-scrollbar {
+  width: 8px; /* スクロールバーの幅 */
+  background: transparent; /* 背景を透明 */
+}
