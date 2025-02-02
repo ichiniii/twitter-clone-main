@@ -1,0 +1,15 @@
+.searchBar {
+    padding: 10px 20px;
+    background-color: var(--twitter-background);
+    border-bottom: 1px solid var(--twitter-background);
+  }
+  
+  .searchBar > input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    outline: none;
+  }
+  

@@ -1,0 +1,40 @@
+/* src/components/timeline/Timeline.css */
+.timeline {
+  flex: 0.45;
+  border-right: 1px solid var(--twitter-background);
+  overflow-y: scroll;
+}
+
+.timeline::-webkit-scrollbar {
+  display: none;
+}
+
+.timeline--header {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 100;
+  border: 1px solid var(--twitter-background);
+  padding: 5px 20px;
+}
+
+.timeline--header > h2 {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+/* 検索バーのスタイル調整 */
+.searchBar {
+  padding: 10px 10px;
+  background-color: var(--twitter-background);
+  border-bottom: 1px solid var(--twitter-background);
+}
+
+.searchBar > input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  outline: none;
+}
