@@ -9,58 +9,67 @@ import SearchBar from "../search/SearchBar";
 
 function Timeline() {
   const [posts, setPosts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(""); // 検索キーワードのステート
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const postData = collection(db, "posts");
     const q = query(postData, orderBy("timestamp", "desc"));
 
-    /* リアルタイムでデータを取得 */
+    // Firestore からリアルタイムでデータを取得
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       setPosts(
-        querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-      ); // ✅ id を含める
+        querySnapshot.docs.map((doc) => ({
+          id: doc.id, // Firestore のドキュメント ID
+          ...doc.data(),
+        }))
+      );
     });
 
-    // クリーンアップ関数
     return () => unsubscribe();
   }, []);
 
-  // 検索キーワードに基づいてフィルタリング
-  const filteredPosts = posts.filter((post) =>
-    (post.tags || []).some((tag) =>
-      tag.toLowerCase().includes(searchTerm.trim().toLowerCase())
-    )
-  );
+  // 🔥 タグ検索機能（タグが検索ワードを含む投稿のみを表示）
+  const filteredPosts = searchTerm
+    ? posts.filter((post) =>
+        post.tags?.some((tag) =>
+          tag.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      )
+    : posts;
 
   return (
     <div className="timeline">
-      {/* Header */}
+      {/* ヘッダー（固定） */}
       <div className="timeline--header">
         <h2>ホーム</h2>
       </div>
 
-      {/* 検索バー */}
+      {/* 検索バー（固定） */}
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
-      {/* TweetBox */}
+      {/* ツイート入力欄（固定） */}
       <TweetBox />
 
-      {/* Post */}
-      <FlipMove>
-        {filteredPosts.map((post, index) => (
-          <Post
-            key={index} // 一意のキーを使用
-            displayName={post.displayName}
-            username={post.username}
-            verified={post.verified}
-            text={post.text}
-            avatar={post.avatar}
-            image={post.image}
-            tags={post.tags} // タグを渡す
-          />
-        ))}
-      </FlipMove>
+      {/* 投稿リスト（スクロール可能） */}
+      <div className="timeline--posts">
+        <FlipMove>
+          {filteredPosts.map((post) => (
+            <Post
+              key={post.id}
+              id={post.id}
+              displayName={post.displayName}
+              username={post.username}
+              verified={post.verified}
+              text={post.text}
+              avatar={post.avatar}
+              image={post.image}
+              tags={post.tags || []}
+              likes={post.likes || []}
+              comments={post.comments || []}
+            />
+          ))}
+        </FlipMove>
+      </div>
     </div>
   );
 }

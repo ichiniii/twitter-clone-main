@@ -1,8 +1,12 @@
 .tweetBox {
-  padding-bottom: 10px;
-  border-bottom: 8px solid var(--twitter-background);
-  padding-right: 10px;
+  position: sticky;
+  top: 50px; /* `SearchBar` の高さ分ずらす */
+  z-index: 99;
+  background-color: white;
+  padding: 10px;
+  border-bottom: 1px solid var(--twitter-background);
 }
+
 
 .tweetBox > form {
   display: flex;

@@ -1,40 +1,42 @@
-/* src/components/timeline/Timeline.css */
 .timeline {
   flex: 0.45;
   border-right: 1px solid var(--twitter-background);
-  overflow-y: scroll;
-}
-
-.timeline::-webkit-scrollbar {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* 画面全体の高さを確保 */
+  overflow: hidden; /* タイムライン以外のスクロールを防ぐ */
 }
 
 .timeline--header {
   position: sticky;
   top: 0;
+  z-index: 102;
   background-color: white;
-  z-index: 100;
-  border: 1px solid var(--twitter-background);
-  padding: 5px 20px;
-}
-
-.timeline--header > h2 {
-  font-size: 20px;
-  font-weight: 800;
-}
-
-/* 検索バーのスタイル調整 */
-.searchBar {
-  padding: 10px 10px;
-  background-color: var(--twitter-background);
+  padding: 10px 20px;
   border-bottom: 1px solid var(--twitter-background);
 }
 
-.searchBar > input {
-  width: 100%;
+.searchBar {
+  position: sticky;
+  top: 50px; /* ヘッダーの下に配置 */
+  z-index: 101;
+  background-color: var(--twitter-background);
   padding: 10px;
-  border: none;
-  border-radius: 30px;
-  font-size: 16px;
-  outline: none;
+  border-bottom: 1px solid var(--twitter-background);
+}
+
+.tweetBox {
+  position: sticky;
+  top: 100px; /* 検索バーの下に配置 */
+  z-index: 100;
+  background-color: white;
+  padding: 10px;
+  border-bottom: 1px solid var(--twitter-background);
+}
+
+/* タイムライン（投稿部分）のみスクロール可能にする */
+.timeline--posts {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
 }
