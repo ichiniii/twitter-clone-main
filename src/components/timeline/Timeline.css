@@ -22,6 +22,7 @@
   z-index: 101;
   background-color: var(--twitter-background);
   padding: 10px;
+  padding-right: 30px; /* 右端に余白を追加 */
   border-bottom: 1px solid var(--twitter-background);
 }
 
