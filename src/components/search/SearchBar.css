@@ -3,7 +3,7 @@
   top: 0;
   z-index: 100;
   background-color: var(--twitter-background);
-  padding: 10px 40px 10px 10px; /* 修正: 右側の余白を40pxに設定 */
+  padding: 10px 30px 10px 10px; /* 修正: 右側の余白を40pxに設定 */
   border-bottom: 1px solid var(--twitter-background);
 }
 
