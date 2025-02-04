@@ -43,9 +43,9 @@
 
 .tweetBox--tagsInput {
   border: none;
-  padding: 10px;
+  padding: 10px;   
   margin-top: 10px;
   border-radius: 20px;
-  width: 100%;
+  width: 95%;
   font-size: 15px;
 }
